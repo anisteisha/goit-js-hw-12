@@ -1,5 +1,5 @@
 import { fetchImages } from './js/pixabay-api.js';
-import { renderGallery, clearGallery, showLoader, hideLoader } from './js/render-functions.js';
+import { renderGallery, clearGallery, showLoader, hideLoader, showLoadMoreBtn, hideLoadMoreBtn } from './js/render-functions.js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -10,6 +10,8 @@ const loadMoreBtn = document.getElementById('load-more-btn');
 
 let query = '';
 let page = 1;
+
+hideLoadMoreBtn();
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -25,7 +27,8 @@ form.addEventListener('submit', async (event) => {
 
   page = 1;
   clearGallery(gallery);
-  loadMoreBtn.classList.add('hidden');
+  hideLoadMoreBtn();
+  destroyLightbox();
 
   showLoader();
   try {
@@ -38,7 +41,7 @@ form.addEventListener('submit', async (event) => {
     } else {
       renderGallery(data.hits, gallery);
       if (data.totalHits > page * 15) {
-        loadMoreBtn.classList.remove('hidden');
+        showLoadMoreBtn();
       }
     }
   } catch (error) {
@@ -59,7 +62,7 @@ loadMoreBtn.addEventListener('click', async () => {
     const data = await fetchImages(query, page);
     renderGallery(data.hits, gallery);
     if (page * 15 >= data.totalHits) {
-      loadMoreBtn.classList.add('hidden');
+      hideLoadMoreBtn();
       iziToast.info({
         title: 'End of Results',
         message: "We're sorry, but you've reached the end of search results.",

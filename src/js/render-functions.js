@@ -1,6 +1,8 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+let lightbox;
+
 export function renderGallery(images, gallery) {
   if (!Array.isArray(images)) {
     console.error('Expected images to be an array, but got:', images);
@@ -22,6 +24,10 @@ export function renderGallery(images, gallery) {
   `).join('');
 
   gallery.insertAdjacentHTML('beforeend', markup);
+
+  if (lightbox) {
+    lightbox.destroy();
+  }
 
   const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
@@ -52,5 +58,25 @@ export function hideLoader() {
     loaderElement.classList.add('hidden');
   } else {
     console.error('Loader element not found.');
+  }
+}
+
+export function showLoadMoreBtn() {
+  const loadMoreBtn = document.getElementById('load-more-btn');
+
+  if (loadMoreBtn) {
+    loadMoreBtn.classList.remove('hidden');
+  } else {
+    console.error('Load more button element not found.');
+  }
+}
+
+export function hideLoadMoreBtn() {
+  const loadMoreBtn = document.getElementById('load-more-btn');
+
+  if (loadMoreBtn) {
+    loadMoreBtn.classList.add('hidden');
+  } else {
+    console.error('Load more button element not found.');
   }
 }

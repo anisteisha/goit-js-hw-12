@@ -119,8 +119,8 @@
 
 /* Loader */
 .loader {
-  position: relative;
-  top: 50%;
+  position: absolute;
+  top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
@@ -130,19 +130,17 @@
 
 /* Load more button */
 #load-more-btn {
-  display: block;
+  position: relative;
+  transform: translate(-50%);
   margin: 20px auto;
   padding: 8px 16px;
-  background-color:rgb(215, 216, 220);
+  left: 50%;
+  background-color: rgba(78, 117, 255, 1);
   color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-#load-more-btn:hover {
-  background-color: rgba(78, 117, 255, 1);
 }
 
 .hidden {
