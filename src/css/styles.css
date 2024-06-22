@@ -120,9 +120,8 @@
 /* Loader */
 .loader {
   position: absolute;
-  top: 100%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   z-index: 1000;
   text-align: center;
   color: rgba(46, 47, 66, 1);

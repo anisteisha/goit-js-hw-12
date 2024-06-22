@@ -28,7 +28,7 @@ form.addEventListener('submit', async (event) => {
   page = 1;
   clearGallery(gallery);
   hideLoadMoreBtn();
-  destroyLightbox();
+  
 
   showLoader();
   try {

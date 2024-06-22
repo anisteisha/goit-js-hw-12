@@ -29,7 +29,7 @@ export function renderGallery(images, gallery) {
     lightbox.destroy();
   }
 
-  const lightbox = new SimpleLightbox('.gallery a', {
+  lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
   });
